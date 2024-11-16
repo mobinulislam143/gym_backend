@@ -8,7 +8,7 @@ const router =express.Router();
 
 // auth
 router.post('/registration', UserController.signUp)
-router.get('/test', UserController.test)
+router.get('/', UserController.test)
 router.post('/login', UserController.login)
 router.post('/logout', UserController.logout)
 
