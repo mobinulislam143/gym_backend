@@ -1,6 +1,8 @@
 Here's a professional yet engaging README documentation for your backend repository, incorporating emojis to make it visually appealing and easy to read.
 Gym Class Scheduling and Membership Management System 🏋️‍♂️📅
 
+API Documentation: https://galactic-meteor-270623.postman.co/workspace/33ee6f65-c719-411e-93f8-39980dc985e8/collection/26251659-833ab04c-6eba-418f-a1dc-3a74b13cfeb5
+
 Welcome to the Gym Class Scheduling and Membership Management System backend repository! This project allows trainers, trainees, and admins to manage class schedules, trainer data, and registrations efficiently. With JWT-based authentication and robust CRUD operations, it's a complete backend solution for gym management.
 🚀 Features
 
