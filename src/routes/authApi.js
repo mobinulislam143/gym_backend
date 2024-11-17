@@ -9,8 +9,9 @@ const router =express.Router();
 // auth
 router.post('/registration', UserController.signUp)
 router.get('/', UserController.test)
+router.get('/getProfile', Authmiddleware, UserController.Users)
 router.post('/login', UserController.login)
-router.post('/logout', UserController.logout)
+router.post('/logout', Authmiddleware, UserController.logout)
 
 // trainer
 router.get('/getTrainer',  TrainerController.getTrainers)
