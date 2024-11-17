@@ -43,45 +43,125 @@ Start the server:
     npm start
 
 📡 API Endpoints
-1. Authentication
+API Documentation
 
-    POST /api/auth/register
-        Register a new trainee
-        Fields: email, password, fullName
+This document provides a detailed overview of the API endpoints for the system. The API is built using Node.js and Express. Each endpoint is listed below with its description, method, URL, and associated controllers.
+User Endpoints
+1. User Registration
 
-    POST /api/auth/login
-        Login to the system and get a JWT token
-        Fields: email, password
+    Method: POST
+    Endpoint: /registration
+    Description: Allows a user to register in the system.
+    Controller Function: UserController.signUp
+    Payload Example:
 
-2. Admin Routes
+    {
+      "name": "John Doe",
+      "email": "johndoe@example.com",
+      "password": "securepassword123"
+    }
 
-    POST /api/admin/trainers
-        Add a new trainer (Admin only)
-        Fields: name, specialty, experience
+2. User Login
 
-    GET /api/admin/trainers
-        Fetch all trainers (Admin only)
+    Method: POST
+    Endpoint: /login
+    Description: Authenticates the user and provides a session or token.
+    Controller Function: UserController.login
+    Payload Example:
 
-    PUT /api/admin/trainers/
-        Update trainer details (Admin only)
-        Fields: name, specialty, experience
+    {
+      "email": "johndoe@example.com",
+      "password": "securepassword123"
+    }
 
-    DELETE /api/admin/trainers/
-        Delete a trainer (Admin only)
+3. User Logout
 
-    POST /api/admin/classes
-        Add a new class schedule (Admin only)
-        Fields: trainerId, className, date, duration
+    Method: POST
+    Endpoint: /logout
+    Description: Logs out the authenticated user.
+    Controller Function: UserController.logout
 
-    GET /api/admin/classes
-        Fetch all class schedules (Admin only)
+4. API Test
 
-3. Trainer Routes
+    Method: GET
+    Endpoint: /
+    Description: Verifies if the API is running successfully.
+    Controller Function: UserController.test
 
-    GET /api/trainer/classes
-        Get all classes assigned to the trainer
-        Fields: trainerId
+Trainer Endpoints
+1. Get All Trainers
 
+    Method: GET
+    Endpoint: /getTrainer
+    Description: Retrieves a list of all trainers in the system.
+    Controller Function: TrainerController.getTrainers
+
+2. Add Trainer
+
+    Method: POST
+    Endpoint: /addTrainer
+    Description: Adds a new trainer to the system. Authentication is required.
+    Middleware: AuthMiddleware
+    Controller Function: TrainerController.addTrainer
+    Payload Example:
+
+    {
+      "name": "Jane Smith",
+      "specialization": "Yoga",
+      "experience": 5
+    }
+
+3. Update Trainer
+
+    Method: POST
+    Endpoint: /updateTrainer/:id
+    Description: Updates trainer details by their ID. Authentication is required.
+    Middleware: AuthMiddleware
+    Controller Function: TrainerController.updateTrainer
+    Payload Example:
+
+    {
+      "name": "Jane Smith",
+      "specialization": "Pilates",
+      "experience": 6
+    }
+
+4. Delete Trainer
+
+    Method: DELETE
+    Endpoint: /deleteTrainer/:id
+    Description: Deletes a trainer by their ID. Authentication is required.
+    Middleware: AuthMiddleware
+    Controller Function: TrainerController.deleteTrainer
+
+Class Endpoints
+1. Get All Classes
+
+    Method: GET
+    Endpoint: /getAllClasses
+    Description: Retrieves all class schedules. Authentication is required.
+    Middleware: AuthMiddleware
+    Controller Function: ClassController.getAllClasses
+
+2. Add Class Schedule
+
+    Method: POST
+    Endpoint: /addClassSchedule
+    Description: Adds a new class schedule. Authentication is required.
+    Middleware: AuthMiddleware
+    Controller Function: ClassController.addClassSchedule
+    Payload Example:
+
+    {
+      "className": "Morning Yoga",
+      "trainerId": "12345",
+      "schedule": "Monday, 7:00 AM"
+    }
+
+Authentication Middleware
+AuthMiddleware
+
+    Verifies if the user is authenticated before allowing access to the endpoint
 🛡️ Security
 
     JWT Authentication: All sensitive routes are protected with JWT authentication. A token is required to access them.
